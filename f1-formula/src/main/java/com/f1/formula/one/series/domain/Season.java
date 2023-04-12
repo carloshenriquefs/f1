@@ -7,14 +7,14 @@ public class Season implements Serializable {
 
 	private String season;
 	private String url;
+	
+	public Season() {
+	}
 
 	public Season(String season, String url) {
 		super();
 		this.season = season;
 		this.url = url;
-	}
-
-	public Season() {
 	}
 
 	public String getSeason() {

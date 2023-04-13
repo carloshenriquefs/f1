@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class Driver implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String driverId;
+	private Long id;
+	private String driver;
 	private String url;
 	private String givenName;
 	private String familyName;
@@ -15,10 +16,11 @@ public class Driver implements Serializable {
 	public Driver() {
 	}
 
-	public Driver(String driverId, String url, String givenName, String familyName, String dataOfBirth,
+	public Driver(Long id, String driver, String url, String givenName, String familyName, String dataOfBirth,
 			String nationality) {
 		super();
-		this.driverId = driverId;
+		this.id = id;
+		this.driver = driver;
 		this.url = url;
 		this.givenName = givenName;
 		this.familyName = familyName;
@@ -26,12 +28,20 @@ public class Driver implements Serializable {
 		this.nationality = nationality;
 	}
 
-	public String getDriverId() {
-		return driverId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setDriverId(String driverId) {
-		this.driverId = driverId;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDriver() {
+		return driver;
+	}
+
+	public void setDriver(String driver) {
+		this.driver = driver;
 	}
 
 	public String getUrl() {

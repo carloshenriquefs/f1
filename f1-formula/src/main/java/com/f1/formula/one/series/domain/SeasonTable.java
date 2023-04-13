@@ -7,6 +7,7 @@ import java.util.List;
 public class SeasonTable implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private Long idSeasonTb;
 	private String constructorId;
 	private String driverId;
 
@@ -19,6 +20,22 @@ public class SeasonTable implements Serializable {
 		super();
 		this.constructorId = constructorId;
 		this.driverId = driverId;
+	}
+
+	public SeasonTable(Long idSeasonTb, String constructorId, String driverId, List<Season> listSeason) {
+		super();
+		this.idSeasonTb = idSeasonTb;
+		this.constructorId = constructorId;
+		this.driverId = driverId;
+		this.listSeason = listSeason;
+	}
+
+	public Long getIdSeasonTb() {
+		return idSeasonTb;
+	}
+
+	public void setIdSeasonTb(Long idSeasonTb) {
+		this.idSeasonTb = idSeasonTb;
 	}
 
 	public String getConstructorId() {

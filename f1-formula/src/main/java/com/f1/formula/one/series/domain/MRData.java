@@ -2,9 +2,15 @@ package com.f1.formula.one.series.domain;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "mrdata")
 public class MRData implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String xmlns;
 	private String series;
 	private String url;
@@ -19,8 +25,9 @@ public class MRData implements Serializable {
 	public MRData() {
 	}
 
-	public MRData(String xmlns, String series, String url, String limit, String offSet, String total) {
+	public MRData(Long id, String xmlns, String series, String url, String limit, String offSet, String total) {
 		super();
+		this.id = id;
 		this.xmlns = xmlns;
 		this.series = series;
 		this.url = url;
@@ -51,6 +58,14 @@ public class MRData implements Serializable {
 		this.offSet = offSet;
 		this.total = total;
 		this.seasonTable = seasonTable;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getXmlns() {

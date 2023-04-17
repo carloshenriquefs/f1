@@ -8,7 +8,7 @@ import com.f1.formula.one.series.domain.Driver;
 
 public interface DriverService {
 
-	Driver findByIdDriver(String driverId);
+	Driver findByIdDriver(Long id);
 	
 	ResponseEntity<List<Driver>> findAll();
 }

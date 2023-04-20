@@ -24,9 +24,9 @@ public class Driver implements Serializable {
 	private String familyName;
 	private String dataOfBirth;
 	private String nationality;
-	
+
 	@ManyToOne
-	private DriverTable drivers;
+	private DriverTable driverTb;
 
 	public Driver() {
 	}
@@ -97,6 +97,14 @@ public class Driver implements Serializable {
 
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
+	}
+
+	public DriverTable getDriverTb() {
+		return driverTb;
+	}
+
+	public void setDriverTb(DriverTable driverTb) {
+		this.driverTb = driverTb;
 	}
 
 	@Override

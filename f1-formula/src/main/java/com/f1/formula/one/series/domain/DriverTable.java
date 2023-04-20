@@ -1,5 +1,6 @@
 package com.f1.formula.one.series.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,12 +14,13 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_driver")
-public class DriverTable {
+public class DriverTable implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idDriverTb;
-	
+
 	@OneToMany
 	private List<Driver> listDriver = new ArrayList<>();
 
@@ -41,7 +43,7 @@ public class DriverTable {
 	public List<Driver> getListDriver() {
 		return listDriver;
 	}
-	
+
 	public void setListDriver(List<Driver> listDriver) {
 		this.listDriver = listDriver;
 	}

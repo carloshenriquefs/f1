@@ -1,5 +1,9 @@
 package com.f1.formula.one.series.service.impl;
 
+import static com.f1.formula.one.series.constants.Constants.SEASON_NAO_ENCONTRADO;
+import static com.f1.formula.one.series.constants.Constants.SEASON_EXCLUIDO_COM_SUCESSO;
+import static com.f1.formula.one.series.constants.Constants.SEASON_INEXISTENTE;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.f1.formula.one.series.domain.Season;
+import com.f1.formula.one.series.dto.MensagemDTO;
 import com.f1.formula.one.series.dto.SeasonDTO;
+import com.f1.formula.one.series.exception.ObjectNotFoundException;
 import com.f1.formula.one.series.repositories.SeasonRepository;
 import com.f1.formula.one.series.service.SeasonService;
 
@@ -18,11 +24,11 @@ public class SeasonServiceImpl implements SeasonService {
 
 	@Autowired
 	private SeasonRepository seasonRepository;
-	
+
 	@Override
 	public Season findByIdSeason(Long id) {
 		Optional<Season> optionalSeason = seasonRepository.findById(id);
-		return optionalSeason.orElse(null);
+		return optionalSeason.orElseThrow(() -> new ObjectNotFoundException(SEASON_NAO_ENCONTRADO));
 	}
 
 	@Override
@@ -31,6 +37,15 @@ public class SeasonServiceImpl implements SeasonService {
 		Page<Season> result = seasonRepository.findAll(pageable);
 		Page<SeasonDTO> page = result.map(x -> new SeasonDTO(x));
 		return page;
+	}
+
+	@Override
+	public MensagemDTO removeSeasonById(Long id) {
+		if (seasonRepository.existsById(id)) {
+			seasonRepository.deleteById(id);
+			return new MensagemDTO(SEASON_EXCLUIDO_COM_SUCESSO);
+		}
+		return new MensagemDTO(SEASON_INEXISTENTE);
 	}
 
 }

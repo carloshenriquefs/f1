@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.f1.formula.one.series.domain.Season;
+import com.f1.formula.one.series.dto.MensagemDTO;
 import com.f1.formula.one.series.dto.SeasonDTO;
 import com.f1.formula.one.series.service.SeasonService;
 
@@ -26,15 +27,13 @@ public class SeasonController {
 		return ResponseEntity.ok(Season);
 	}
 
-//	@RequestMapping(method = RequestMethod.GET)
-//	public ResponseEntity<ResponseEntity<List<Season>>> findAll() {
-//		ResponseEntity<List<Season>> listSeason = seasonService.findAll();
-//		return ResponseEntity.ok().body(listSeason);
-//	}
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public Page<SeasonDTO> findAll(Pageable pageable) {
 		return seasonService.findAll(pageable);
 	}
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public MensagemDTO removeSeason(@PathVariable Long id) {
+		return seasonService.removeSeasonById(id);
+	}
 }

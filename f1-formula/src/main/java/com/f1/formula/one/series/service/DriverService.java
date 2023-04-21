@@ -5,12 +5,13 @@ import org.springframework.data.domain.Pageable;
 
 import com.f1.formula.one.series.domain.Driver;
 import com.f1.formula.one.series.dto.DriverDTO;
+import com.f1.formula.one.series.dto.MensagemDTO;
 
 public interface DriverService {
 
 	Driver findByIdDriver(Long id);
 
-	// ResponseEntity<List<Driver>> findAll();
-
 	Page<DriverDTO> findAll(Pageable pageable);
+
+	MensagemDTO removeDriverById(Long id);
 }

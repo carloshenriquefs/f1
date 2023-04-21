@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.f1.formula.one.series.domain.Driver;
 import com.f1.formula.one.series.dto.DriverDTO;
+import com.f1.formula.one.series.dto.MensagemDTO;
 import com.f1.formula.one.series.service.DriverService;
 
 @RestController
@@ -25,9 +26,14 @@ public class DriverController {
 		Driver driver = driverService.findByIdDriver(id);
 		return ResponseEntity.ok(driver);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public Page<DriverDTO> findAll(Pageable pageable) {
 		return driverService.findAll(pageable);
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public MensagemDTO removeDriver(@PathVariable Long id) {
+		return driverService.removeDriverById(id);
 	}
 }

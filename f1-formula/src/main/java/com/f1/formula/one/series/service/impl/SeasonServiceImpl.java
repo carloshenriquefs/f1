@@ -1,13 +1,15 @@
 package com.f1.formula.one.series.service.impl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.f1.formula.one.series.domain.Season;
+import com.f1.formula.one.series.dto.SeasonDTO;
 import com.f1.formula.one.series.repositories.SeasonRepository;
 import com.f1.formula.one.series.service.SeasonService;
 
@@ -15,18 +17,20 @@ import com.f1.formula.one.series.service.SeasonService;
 public class SeasonServiceImpl implements SeasonService {
 
 	@Autowired
-	private SeasonRepository SeasonRepository;
+	private SeasonRepository seasonRepository;
 	
 	@Override
 	public Season findByIdSeason(Long id) {
-		Optional<Season> optionalSeason = SeasonRepository.findById(id);
+		Optional<Season> optionalSeason = seasonRepository.findById(id);
 		return optionalSeason.orElse(null);
 	}
 
 	@Override
-	public ResponseEntity<List<Season>> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional(readOnly = true)
+	public Page<SeasonDTO> findAll(Pageable pageable) {
+		Page<Season> result = seasonRepository.findAll(pageable);
+		Page<SeasonDTO> page = result.map(x -> new SeasonDTO(x));
+		return page;
 	}
 
 }

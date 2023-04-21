@@ -9,5 +9,5 @@ public class F1FormulaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(F1FormulaApplication.class, args);
 	}
-	
+
 }

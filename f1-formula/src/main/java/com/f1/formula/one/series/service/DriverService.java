@@ -9,6 +9,8 @@ import com.f1.formula.one.series.dto.MensagemDTO;
 
 public interface DriverService {
 
+	Driver create(Driver driver);
+
 	Driver findByIdDriver(Long id);
 
 	Page<DriverDTO> findAll(Pageable pageable);

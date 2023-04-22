@@ -25,6 +25,11 @@ public class DriverServiceImpl implements DriverService {
 	private DriverRepository driverRepository;
 
 	@Override
+	public Driver create(Driver driver) {
+		return driverRepository.save(driver);
+	}
+
+	@Override
 	public Driver findByIdDriver(Long id) {
 		Optional<Driver> optionalDriver = driverRepository.findById(id);
 		return optionalDriver.orElseThrow(() -> new ObjectNotFoundException(DRIVER_NAO_ENCONTRADO));

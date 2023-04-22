@@ -42,6 +42,12 @@ public class DriverController {
 		return driverService.findAll(pageable);
 	}
 
+	@RequestMapping(value = "/driver/{driver}", method = RequestMethod.GET)
+	public ResponseEntity<Driver> getByDriver(@PathVariable("driver") String driver) {
+		return driverService.getByDriver(driver).map(d -> ResponseEntity.ok(d))
+				.orElseGet(() -> ResponseEntity.notFound().build());
+	}
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public MensagemDTO removeDriver(@PathVariable Long id) {
 		return driverService.removeDriverById(id);

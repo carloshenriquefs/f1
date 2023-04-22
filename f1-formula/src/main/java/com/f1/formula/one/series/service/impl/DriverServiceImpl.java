@@ -43,6 +43,11 @@ public class DriverServiceImpl implements DriverService {
 	}
 
 	@Override
+	public Optional<Driver> getByDriver(String driver) {
+		return driverRepository.findByDriver(driver);
+	}
+
+	@Override
 	public MensagemDTO removeDriverById(Long id) {
 		if (driverRepository.existsById(id)) {
 			driverRepository.deleteById(id);

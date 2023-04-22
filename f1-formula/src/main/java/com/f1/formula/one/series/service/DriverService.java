@@ -1,5 +1,7 @@
 package com.f1.formula.one.series.service;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,6 +16,8 @@ public interface DriverService {
 	Driver findByIdDriver(Long id);
 
 	Page<DriverDTO> findAll(Pageable pageable);
+	
+	Optional<Driver> getByDriver(String driver);
 
 	MensagemDTO removeDriverById(Long id);
 }

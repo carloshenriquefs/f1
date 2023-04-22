@@ -8,6 +8,8 @@ import com.f1.formula.one.series.dto.MensagemDTO;
 import com.f1.formula.one.series.dto.SeasonDTO;
 
 public interface SeasonService {
+	
+	Season create(Season season);
 
 	Season findByIdSeason(Long id);
 	

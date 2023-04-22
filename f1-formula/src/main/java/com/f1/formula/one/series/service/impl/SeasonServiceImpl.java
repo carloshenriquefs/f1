@@ -26,6 +26,11 @@ public class SeasonServiceImpl implements SeasonService {
 	private SeasonRepository seasonRepository;
 
 	@Override
+	public Season create(Season season) {
+		return seasonRepository.save(season);
+	}
+
+	@Override
 	public Season findByIdSeason(Long id) {
 		Optional<Season> optionalSeason = seasonRepository.findById(id);
 		return optionalSeason.orElseThrow(() -> new ObjectNotFoundException(SEASON_NAO_ENCONTRADO));

@@ -42,6 +42,12 @@ public class SeasonController {
 		return seasonService.findAll(pageable);
 	}
 
+	@RequestMapping(value = "/season/{season}", method = RequestMethod.GET)
+	public ResponseEntity<Season> getBySeason(@PathVariable("season") String season) {
+		return seasonService.getBySeason(season).map(s -> ResponseEntity.ok(s))
+				.orElseGet(() -> ResponseEntity.notFound().build());
+	}
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public MensagemDTO removeSeason(@PathVariable Long id) {
 		return seasonService.removeSeasonById(id);

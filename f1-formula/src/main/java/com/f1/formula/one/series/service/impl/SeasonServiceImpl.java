@@ -45,6 +45,11 @@ public class SeasonServiceImpl implements SeasonService {
 	}
 
 	@Override
+	public Optional<Season> getBySeason(String season) {
+		return seasonRepository.findBySeason(season);
+	}
+
+	@Override
 	public MensagemDTO removeSeasonById(Long id) {
 		if (seasonRepository.existsById(id)) {
 			seasonRepository.deleteById(id);

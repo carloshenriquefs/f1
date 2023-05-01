@@ -6,8 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.f1.formula.one.series.domain.Season;
-import com.f1.formula.one.series.dto.MensagemDTO;
 import com.f1.formula.one.series.dto.SeasonDTO;
+import com.f1.formula.one.series.message.Message;
 
 public interface SeasonService {
 	
@@ -19,5 +19,5 @@ public interface SeasonService {
 	
 	Optional<Season> getBySeason(String season);
 	
-	MensagemDTO removeSeasonById(Long id);
+	Message removeSeasonById(Long id);
 }

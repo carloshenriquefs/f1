@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.f1.formula.one.series.domain.Season;
-import com.f1.formula.one.series.dto.MensagemDTO;
 import com.f1.formula.one.series.dto.SeasonDTO;
 import com.f1.formula.one.series.exception.ObjectNotFoundException;
+import com.f1.formula.one.series.message.Message;
 import com.f1.formula.one.series.repositories.SeasonRepository;
 import com.f1.formula.one.series.service.SeasonService;
 
@@ -50,12 +50,12 @@ public class SeasonServiceImpl implements SeasonService {
 	}
 
 	@Override
-	public MensagemDTO removeSeasonById(Long id) {
+	public Message removeSeasonById(Long id) {
 		if (seasonRepository.existsById(id)) {
 			seasonRepository.deleteById(id);
-			return new MensagemDTO(SEASON_EXCLUIDO_COM_SUCESSO);
+			return new Message(SEASON_EXCLUIDO_COM_SUCESSO);
 		}
-		return new MensagemDTO(SEASON_INEXISTENTE);
+		return new Message(SEASON_INEXISTENTE);
 	}
 
 }

@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.f1.formula.one.series.domain.Driver;
 import com.f1.formula.one.series.dto.DriverDTO;
-import com.f1.formula.one.series.dto.MensagemDTO;
+import com.f1.formula.one.series.message.Message;
 import com.f1.formula.one.series.service.DriverService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping(value = "/drivers")
@@ -48,8 +49,20 @@ public class DriverController {
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
 
+	@RequestMapping(value = "/givenName/{givenName}", method = RequestMethod.GET)
+	public ResponseEntity<Driver> getByGivenName(@PathVariable("givenName") String givenName) {
+		return driverService.getByGivenName(givenName).map(gv -> ResponseEntity.ok(gv))
+				.orElseGet(() -> ResponseEntity.notFound().build());
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<DriverDTO> update(@PathVariable @NotNull Long id, @RequestBody @Valid DriverDTO dto) {
+		DriverDTO atualizado = driverService.updateDriver(id, dto);
+		return ResponseEntity.ok(atualizado);
+	}
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public MensagemDTO removeDriver(@PathVariable Long id) {
+	public Message removeDriver(@PathVariable Long id) {
 		return driverService.removeDriverById(id);
 	}
 }

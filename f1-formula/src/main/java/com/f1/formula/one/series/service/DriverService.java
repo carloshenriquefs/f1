@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.f1.formula.one.series.domain.Driver;
 import com.f1.formula.one.series.dto.DriverDTO;
-import com.f1.formula.one.series.dto.MensagemDTO;
+import com.f1.formula.one.series.message.Message;
 
 public interface DriverService {
 
@@ -16,8 +16,12 @@ public interface DriverService {
 	Driver findByIdDriver(Long id);
 
 	Page<DriverDTO> findAll(Pageable pageable);
-	
+
 	Optional<Driver> getByDriver(String driver);
 
-	MensagemDTO removeDriverById(Long id);
+	Optional<Driver> getByGivenName(String givenName);
+
+	DriverDTO updateDriver(Long id, DriverDTO driver);
+
+	Message removeDriverById(Long id);
 }

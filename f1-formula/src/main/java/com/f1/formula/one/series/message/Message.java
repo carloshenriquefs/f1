@@ -1,9 +1,9 @@
-package com.f1.formula.one.series.dto;
+package com.f1.formula.one.series.message;
 
-public class MensagemDTO {
+public class Message {
 	private String mensagem;
 
-	public MensagemDTO(String mensagem) {
+	public Message(String mensagem) {
 		this.mensagem = mensagem;
 	}
 

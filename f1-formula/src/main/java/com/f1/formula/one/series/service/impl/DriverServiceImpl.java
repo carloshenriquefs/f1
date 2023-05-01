@@ -1,8 +1,8 @@
 package com.f1.formula.one.series.service.impl;
 
-import static com.f1.formula.one.series.constants.Constants.DRIVER_NAO_ENCONTRADO;
 import static com.f1.formula.one.series.constants.Constants.DRIVER_EXCLUIDO_COM_SUCESSO;
 import static com.f1.formula.one.series.constants.Constants.DRIVER_INEXISTENTE;
+import static com.f1.formula.one.series.constants.Constants.DRIVER_NAO_ENCONTRADO;
 
 import java.util.Optional;
 
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 import com.f1.formula.one.series.domain.Driver;
 import com.f1.formula.one.series.dto.DriverDTO;
-import com.f1.formula.one.series.dto.MensagemDTO;
 import com.f1.formula.one.series.exception.ObjectNotFoundException;
+import com.f1.formula.one.series.message.Message;
 import com.f1.formula.one.series.repositories.DriverRepository;
 import com.f1.formula.one.series.service.DriverService;
 
@@ -48,12 +48,24 @@ public class DriverServiceImpl implements DriverService {
 	}
 
 	@Override
-	public MensagemDTO removeDriverById(Long id) {
+	public Optional<Driver> getByGivenName(String givenName) {
+		return driverRepository.findByGivenName(givenName);
+	}
+
+	@Override
+	public Message removeDriverById(Long id) {
 		if (driverRepository.existsById(id)) {
 			driverRepository.deleteById(id);
-			return new MensagemDTO(DRIVER_EXCLUIDO_COM_SUCESSO);
+			return new Message(DRIVER_EXCLUIDO_COM_SUCESSO);
 		}
-		return new MensagemDTO(DRIVER_INEXISTENTE);
+		return new Message(DRIVER_INEXISTENTE);
 	}
+
+	@Override
+	public DriverDTO updateDriver(Long id, DriverDTO driver) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.f1.formula.one.series.domain.Season;
-import com.f1.formula.one.series.dto.MensagemDTO;
 import com.f1.formula.one.series.dto.SeasonDTO;
+import com.f1.formula.one.series.message.Message;
 import com.f1.formula.one.series.service.SeasonService;
 
 import jakarta.validation.Valid;
@@ -49,7 +49,7 @@ public class SeasonController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public MensagemDTO removeSeason(@PathVariable Long id) {
+	public Message removeSeason(@PathVariable Long id) {
 		return seasonService.removeSeasonById(id);
 	}
 }

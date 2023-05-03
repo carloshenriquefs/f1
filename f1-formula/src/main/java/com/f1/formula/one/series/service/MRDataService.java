@@ -7,6 +7,8 @@ import com.f1.formula.one.series.dto.MRDataDTO;
 
 public interface MRDataService {
 
+	MRData create(MRData mrData);
+	
 	List<MRDataDTO> findAll();
 	
 	MRData findByIdMRData(Long id);

@@ -27,6 +27,10 @@ public class MRDataServiceImpl implements MRDataService {
 
 	private final ModelMapper modelMapper = new ModelMapper();
 
+	public MRData create(MRData mrData) {
+		return mrDataRepository.save(mrData);
+	}
+
 	public List<MRDataDTO> findAll() {
 		return mrDataRepository.findAll().stream().map(p -> modelMapper.map(p, MRDataDTO.class))
 				.collect(Collectors.toList());
@@ -36,4 +40,5 @@ public class MRDataServiceImpl implements MRDataService {
 		Optional<MRData> optionalMRData = mrDataRepository.findById(id);
 		return optionalMRData.orElseThrow(() -> new ObjectNotFoundException(MRDATA_NAO_ENCONTRADO));
 	}
+
 }

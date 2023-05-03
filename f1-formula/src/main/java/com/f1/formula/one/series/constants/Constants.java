@@ -11,4 +11,8 @@ public class Constants {
 	public static final String SEASON_NAO_ENCONTRADO = "Season não encontrado!!!";
 	public static final String SEASON_INEXISTENTE = "Season inexistente!!!";
 	public static final String SEASON_EXCLUIDO_COM_SUCESSO = "Season excluído com sucesso!!!";
+	
+	/* MRDATA */
+	public static final String MRDATA_NAO_ENCONTRADO = "Season excluído com sucesso!!!";
+	
 }
